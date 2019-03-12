@@ -25,8 +25,24 @@ if RecentMonth_value<int(time.month):
                (SELECT ID, Grade, Class, Number, Name FROM `Identify`)
                ".format(month=time.month))
     link.commit()
+    log.info("Program created table \'{month}월\' successfully. ".format(month=time.month))
     Config_Month = "RecentMonth : {month}".format(month = time.month)
 
+    cur.execute("ALTER TABLE `{month}월`
+                MODIFY COLUMN ID int(3) PRIMARY KEY
+                ".format(month=time.month))
+    link.commit()
+    file.write(Config_Month)
+
+
+cur.execute("ALTER TABLE `{month}월` ADD `{day}일`
+            varchar(99) default '불출석'
+            ".format(month=time.month, day=time.day))
+link.commit()
+log.info("Program created column \'{day}일\' on Table \'{month}월\' successfully.
+        ".format(month=time.month, day=time.day))
+
+link.close()
 # if time.day<18:
 #     cur.execute("CREATE TABLE IF NOT EXISTS `{month}월` (SELECT ID, Grade, Class, Number, Name FROM `Identify`)".format(month=time.month))
 #     link.commit()
