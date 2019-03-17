@@ -2,3 +2,7 @@ INFO:root:Program created table '3월' successfully.
 INFO:root:Program created table '3월' successfully. 
 INFO:root:Program created column '13일' on Table '3월' successfully.
         
+INFO:root:Program created column '18일' on Table '3월' successfully.
+        
+INFO:root:Program created column '19일' on Table '3월' successfully.
+        

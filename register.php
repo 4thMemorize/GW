@@ -17,11 +17,13 @@
     $month= date("n");
     $day = date("j");
 
-    function Modify_table($Grade, $Class, $Number, $Name) {
+    function Modify_table($Grade, $Class, $Number, $Name, $month, $day) {
       $link=mysqli_connect("localhost", "root", "4thMemorize", "GW");
       mysqli_set_charset($link, "utf8");
-      $sql = "INSERT INTO $month.월 (Grade, Class, Number, Name, $day.일) VALUES ($Grade, $Class, $Number, $Name, 등록일)";
+      $sql = "INSERT INTO ". $month. "월 (Grade, Class, Number, Name, ". $day. "일) VALUES (". $Grade. ", ". $Class. ", ". $Number.", '". $Name. "', ". "'등록일')";
       $result=mysqli_query($link, $sql) or die ("Error:".mysqli_error($link));
+
+      return $result;
     }
 
 
@@ -35,13 +37,13 @@
     }
     else {
       $sql = "INSERT INTO Identify (Serial, Grade, Class, Number, Name) VALUES ('$Serial', $Grade, $Class, $Number, '$Name')";
-      $check_sql = "SELECT * FROM Identify order by ID DESC limit 1;";
-      $result=mysqli_query($link, $sql) or die ("Error:".mysqli_error($link));
+      $result = mysqli_query($link, $sql) or die ("Error:".mysqli_error($link));
+      $result_modify = Modify_table($Grade, $Class, $Number, $Name, $month, $day);
 
-      if ($result==1) {
+      if ($result&$result_modify==1) {
+        $check_sql = "SELECT * FROM Identify order by ID DESC limit 1;";
         $check_result = mysqli_query($link, $check_sql) or die ("Error:".mysqli_error($link));
 
-        Modify_table($Grade, $Class, $Number, $Name);
         $Inform = mysqli_fetch_array($check_result);
         $ID = $Inform['ID'];
         $Student_Inform =array(

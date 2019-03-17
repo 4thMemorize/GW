@@ -1,43 +1,86 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
-<link rel="stylesheet" type="text/css" href="style.css?ver=1.0.0.2"/>
+<html>
+<link rel="stylesheet" type="text/css" href="style.css?ver=1.1.3.3"/>
   <head>
     <meta charset="utf-8">
-    <title>Master Page</title>
+    <title>Admin Page</title>
+    <h1>Admin Page</h1>
   </head>
   <body>
-    <?php
+    <form class="" action="admin.php" method="post">
+      <select class="" name="Grade">
+        <option>학년</option>
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+      </select>
 
-    $link=mysqli_connect("localhost", "root", "4thMemorize", "GW");
-    mysqli_set_charset($link, "utf8");
+      <select class="" align="center" name="Class">
+        <option>반</option>
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5</option>
+        <option>6</option>
+        <option>7</option>
+        <option>8</option>
+        <option>9</option>
+        <option>10</option>
+        <option>11</option>
+        <option>12</option>
+        <option>13</option>
+        <option>14</option>
+        <option>15</option>
+      </select>
 
-    $Grade = $_GET['Grade'];
-    $Class = $_GET['Class'];
-    $Number = $_GET['Number'];
-    $Name = $_GET['Name'];
+      <select class="" name="Number">
+        <option>번호</option>
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5</option>
+        <option>6</option>
+        <option>7</option>
+        <option>8</option>
+        <option>9</option>
+        <option>10</option>
+        <option>11</option>
+        <option>12</option>
+        <option>13</option>
+        <option>14</option>
+        <option>15</option>
+        <option>16</option>
+        <option>17</option>
+        <option>18</option>
+        <option>19</option>
+        <option>20</option>
+        <option>21</option>
+        <option>22</option>
+        <option>23</option>
+        <option>24</option>
+        <option>25</option>
+        <option>26</option>
+        <option>27</option>
+        <option>28</option>
+        <option>29</option>
+        <option>30</option>
+        <option>31</option>
+        <option>32</option>
+        <option>33</option>
+        <option>34</option>
+        <option>35</option>
+        <option>36</option>
+        <option>37</option>
+        <option>38</option>
+        <option>39</option>
+        <option>40</option>
+      </select>
+      <input type="text" name="Name" value="" placeholder="이름"> <br>
+      <input type="text" id="pw" name="Password" value="" placeholder="교사용 인증번호">
+      <button type="submit" name="button">확인</button>
 
-    date_default_timezone_set("Asia/Seoul");
-
-    $month= date("n");
-    $day = date("j");
-    $hour = date("H");
-    $min = date("i");
-    $timestamp = date("H:i:s");
-
-    if ($_GET['Permission']) {
-      $record_sql = "UPDATE ".$month."월 SET ".$day."일 = '출석' WHERE Grade='$Grade' AND Class='$Class' AND Number='$Number' AND Name='$Name';";
-      $record_result=mysqli_query($link, $record_sql) or die ("Error:".mysqli_error($link));
-      $comment = "관리자 권한으로 입실 처리되었습니다.";
-      $query = $Grade. "학년 ". $Class. "반 ". $Number. "번 ". $Name;
-    }
-    else {
-      $comment = "권한이 올바르지 않습니다.";
-    }
-    ?>
-    <h2 id="Student_ID">
-      <?=$query?>
-      <div id="query">
-      <?=$comment?>
-      <div>
+    </form>
   </body>
 </html>
