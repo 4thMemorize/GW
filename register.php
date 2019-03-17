@@ -13,21 +13,35 @@
     $Number = "$_GET[Number]";
     $Name = "$_GET[Name]";
 
+    date_default_timezone_set("Asia/Seoul");
+    $month= date("n");
+    $day = date("j");
+
+    function Modify_table($Grade, $Class, $Number, $Name) {
+      $link=mysqli_connect("localhost", "root", "4thMemorize", "GW");
+      mysqli_set_charset($link, "utf8");
+      $sql = "INSERT INTO $month.월 (Grade, Class, Number, Name, $day.일) VALUES ($Grade, $Class, $Number, $Name, 등록일)";
+      $result=mysqli_query($link, $sql) or die ("Error:".mysqli_error($link));
+    }
+
+
+
     $link=mysqli_connect("localhost", "root", "4thMemorize", "GW");
     mysqli_set_charset($link, "utf8");
 
-    $sql = "INSERT INTO Identify (Serial, Grade, Class, Number, Name) VALUES ('$Serial', $Grade, $Class, $Number, '$Name')";
-    $check_sql = "SELECT * FROM Identify order by ID DESC limit 1;";
 
-    $result=mysqli_query($link, $sql) or die ("Error:".mysqli_error($link));
-
-    if (!isset($_GET['Serial'], $_GET['Grade'], $_GET['Class'], $_GET['Number'], $_GET['Name'])) {
+    if (!($_GET['Serial']&$_GET['Grade']&$_GET['Class']&$_GET['Number']&$_GET['Name'])) {
       $comment = "누락된 정보가 있습니다. 확인해 주세요.";
     }
     else {
+      $sql = "INSERT INTO Identify (Serial, Grade, Class, Number, Name) VALUES ('$Serial', $Grade, $Class, $Number, '$Name')";
+      $check_sql = "SELECT * FROM Identify order by ID DESC limit 1;";
+      $result=mysqli_query($link, $sql) or die ("Error:".mysqli_error($link));
+
       if ($result==1) {
         $check_result = mysqli_query($link, $check_sql) or die ("Error:".mysqli_error($link));
 
+        Modify_table($Grade, $Class, $Number, $Name);
         $Inform = mysqli_fetch_array($check_result);
         $ID = $Inform['ID'];
         $Student_Inform =array(

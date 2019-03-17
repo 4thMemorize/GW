@@ -14,33 +14,38 @@ cur.execute("set names utf8")
 date = datetime.datetime
 weekno = date.today().weekday()
 time = date.now()
+month = int(time.month)
 #! Manage Config File
-file = open('./Back.conf', mode='rw')
+file = open('./Back.conf', mode='r')
 fileread = file.readlines()
-RecentMonth_value = fileread[0].split(':')[1]
-PrimaryKey_value = bool(fileread[1].split(':')[1])
+RecentMonth_value = int(fileread[0].split(': ')[1])
 
-if RecentMonth_value<int(time.month):
-    cur.execute("CREATE TABLE IF NOT EXISTS `{month}월`
+print(RecentMonth_value)
+print(month)
+
+if RecentMonth_value < month:
+    print(RecentMonth_value)
+    cur.execute("""CREATE TABLE IF NOT EXISTS `{month}월`
                (SELECT ID, Grade, Class, Number, Name FROM `Identify`)
-               ".format(month=time.month))
+               """.format(month=time.month))
     link.commit()
     log.info("Program created table \'{month}월\' successfully. ".format(month=time.month))
     Config_Month = "RecentMonth : {month}".format(month = time.month)
 
-    cur.execute("ALTER TABLE `{month}월`
+    cur.execute("""ALTER TABLE `{month}월`
                 MODIFY COLUMN ID int(3) PRIMARY KEY
-                ".format(month=time.month))
+                """.format(month=time.month))
     link.commit()
-    file.write(Config_Month)
+    filewrite = open('./Back.conf', mode='w')
+    filewrite.write(Config_Month)
 
 
-cur.execute("ALTER TABLE `{month}월` ADD `{day}일`
+cur.execute("""ALTER TABLE `{month}월` ADD `{day}일`
             varchar(99) default '불출석'
-            ".format(month=time.month, day=time.day))
+            """.format(month=time.month, day=time.day))
 link.commit()
-log.info("Program created column \'{day}일\' on Table \'{month}월\' successfully.
-        ".format(month=time.month, day=time.day))
+log.info("""Program created column \'{day}일\' on Table \'{month}월\' successfully.
+        """.format(month=time.month, day=time.day))
 
 link.close()
 # if time.day<18:
