@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<link rel="stylesheet" type="text/css" href="style.css?ver=1.1.3.3"/>
+<link rel="stylesheet" type="text/css" href="style.css?ver=1.1.3.4"/>
   <head>
     <meta charset="utf-8">
     <title>Admin Page</title>
@@ -80,6 +80,9 @@
       <input type="text" name="Name" value="" placeholder="이름"> <br>
       <input type="text" id="pw" name="Password" value="" placeholder="교사용 인증번호">
       <button type="submit" name="button">확인</button>
+    </form>
+      <br>
+      <input id="link_button" type="button" value="DB관리" onclick="location.href='./database.php'">
 
     </form>
   </body>
