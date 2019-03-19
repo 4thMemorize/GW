@@ -52,7 +52,7 @@
       }
 
       $log_dir = ".";
-      $log_file = fopen($log_dir."/php.log", "a");
+      $log_file = fopen($log_dir."./log/php.log", "a");
       fwrite($log_file, $log_txt."\r\n");
       fclose($log_file);
 

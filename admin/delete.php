@@ -19,7 +19,7 @@
     $Number = $_POST['Number'];
     $Name = $_POST['Name'];
 
-    if ($_GET['Password']=GW123) {
+    if ($_POST['Password']=GW123) {
       if (!($_POST['Grade']&$_POST['Class']&$_POST['Number']&$_POST['Name'])) {
         $comment = "누락된 정보가 있습니다. 확인해 주세요.";
       }

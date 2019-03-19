@@ -5,7 +5,7 @@ import pymysql
 import datetime
 import logging as log
 
-log.basicConfig(filename='./Back.log', level=log.INFO)
+log.basicConfig(filename='./log/Back.log', level=log.INFO)
 #! Python - MySQL Connection
 link = pymysql.connect(host="localhost", user="root", passwd="4thMemorize", db="GW", charset="utf8")
 cur = link.cursor()
@@ -16,7 +16,8 @@ weekno = date.today().weekday()
 time = date.now()
 month = int(time.month)
 #! Manage Config File
-file = open('./Back.conf', mode='r')
+file = open('./log/Back.conf', mode='r')
+record = open('./log/record.conf', mode='a')
 fileread = file.readlines()
 RecentMonth_value = int(fileread[0].split(': ')[1])
 
@@ -37,8 +38,10 @@ if RecentMonth_value < month:
                 AUTO_INCREMENT
                 """.format(month=time.month))
     link.commit()
-    filewrite = open('./Back.conf', mode='w')
+    filewrite = open('./log/Back.conf', mode='w')
     filewrite.write(Config_Month)
+    record.write(str(month))
+    record.write("/")
 
 
 cur.execute("""ALTER TABLE `{month}월` ADD `{day}일`

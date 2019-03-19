@@ -7,7 +7,7 @@
     <h1>Admin Page</h1>
   </head>
   <body>
-    <form class="" action="admin.php" method="post">
+    <form class="" action="./admin/admin.php" method="post">
       <select class="" name="Grade">
         <option>학년</option>
         <option>1</option>
