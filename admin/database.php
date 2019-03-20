@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<link rel="stylesheet" type="text/css" href="style.css?ver=1.1.3.5"/>
+<link rel="stylesheet" type="text/css" href="/Project/style.css?ver=1.1.3.5"/>
   <head>
     <meta charset="utf-8">
     <title>DB Management Page</title>

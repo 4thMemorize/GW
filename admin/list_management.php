@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-  <link rel="stylesheet" type="text/css" href="style.css?ver=1.1.3.5"/>
+  <link rel="stylesheet" type="text/css" href="/Project/style.css?ver=1.1.3.5"/>
     <meta charset="utf-8">
     <title>List Management</title>
   </head>

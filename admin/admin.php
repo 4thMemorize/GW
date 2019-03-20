@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-<link rel="stylesheet" type="text/css" href="style.css?ver=1.0.0.2"/>
+<link rel="stylesheet" type="text/css" href="/Project/style.css?ver=1.0.0.2"/>
   <head>
     <meta charset="utf-8">
     <title>Admin Page</title>

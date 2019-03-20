@@ -82,7 +82,7 @@
       <button type="submit" name="button">확인</button>
     </form>
       <br>
-      <input id="link_button" type="button" value="DB관리" onclick="location.href='./database.php'">
+      <input id="link_button" type="button" value="DB관리" onclick="location.href='./admin/database.php'">
 
     </form>
   </body>
