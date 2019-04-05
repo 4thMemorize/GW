@@ -30,6 +30,9 @@
 
     if ($result&$reset_result=1) {
       echo "<h2 id = 'red'>";
+      $file_truncate = fopen(__DIR__.'/../log/record.conf', "w");
+      ftruncate($file_truncate, 0);
+      fclose($file_truncate);
       for ($i=0; $i < $array ; $i++) {
         echo $record[$i]." ";
       }

@@ -24,7 +24,7 @@ RecentMonth_value = int(fileread[0].split(': ')[1])
 print(RecentMonth_value)
 print(month)
 
-if RecentMonth_value < month:
+if RecentMonth_value != month:
     print(RecentMonth_value)
     cur.execute("""CREATE TABLE IF NOT EXISTS `{month}월`
                (SELECT ID, Grade, Class, Number, Name FROM `Identify`)
