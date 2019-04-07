@@ -35,7 +35,6 @@ if RecentMonth_value != month:
 
     cur.execute("""ALTER TABLE `{month}월`
                 MODIFY COLUMN ID int(3) PRIMARY KEY
-                AUTO_INCREMENT
                 """.format(month=time.month))
     link.commit()
     filewrite = open('./log/Back.conf', mode='w')
@@ -61,7 +60,7 @@ link.close()
 #
 # if weekno<5:
 #     cur.execute("ALTER TABLE `{month}월` ADD `{day}일` varchar(99) default '불출석'".format(month=time.month, day=time.day))
-#     link.commit()
+#     link.commit(uto
 #     log.info("Program created column \'{day}일\' on Table \'{month}월\' successfully. ".format(month=time.month, day=time.day))
 #
 #
