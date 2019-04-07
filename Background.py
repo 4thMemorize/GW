@@ -27,7 +27,7 @@ print(month)
 if RecentMonth_value != month:
     print(RecentMonth_value)
     cur.execute("""CREATE TABLE IF NOT EXISTS `{month}월`
-               (SELECT ID, Grade, Class, Number, Name FROM `Identify`)
+               (SELECT ID, Grade, Class, Number, Name FROM `Identify`) DEFAULT CHARACTER SET utf8
                """.format(month=time.month))
     link.commit()
     log.info("Program created table \'{month}월\' successfully. ".format(month=time.month))
