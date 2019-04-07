@@ -35,6 +35,7 @@ if RecentMonth_value != month:
 
     cur.execute("""ALTER TABLE `{month}월`
                 MODIFY COLUMN ID int(3) PRIMARY KEY
+                AUTO_INCREMENT
                 """.format(month=time.month))
     link.commit()
     filewrite = open('./log/Back.conf', mode='w')
