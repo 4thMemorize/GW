@@ -14,7 +14,10 @@
 
     <h2>개별 관리</h2>
     <ol>
-      <input id="" type="button" value="명단 관리" onclick="location.href='./list_management.php'">
+      <input id="link_button_pma" type="button" value="학생정보 삭제" onclick="location.href='./list_management.php'">
+    </ol>
+    <ol>
+      <input id="link_button_pma" type="button" value="학생정보 수정" onclick="location.href='./list_modify.php'">
     </ol>
     <ol>
       <input type="button" value="DB 초기화" onclick="location.href='./reset.php'">

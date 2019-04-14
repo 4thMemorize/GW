@@ -38,7 +38,7 @@
 
       else {
 
-        if ($hour>8 & $min>1) {
+        if ($hour>=8 & $min>1) {
           $query = "지각 처리되었습니다.";
           $log_txt = $timestamp."     ". $Student_Inform['1']."학년 ". $Student_Inform['2']."반 ". $Student_Inform['3']."번 ". $Student_Inform['4']. "   ". "불출석 처리 (사유 : 지각)";
         }
@@ -51,8 +51,7 @@
           $comment = $Student_Inform['1']."학년".$Student_Inform['2']."반".$Student_Inform['3']."번".$Student_Inform['4'];
         }
 
-        $log_dir = ".";
-        $log_file = fopen($log_dir."./log/php.log", "a");
+        $log_file = fopen($log_dir."/var/www/html/log/php.log", "a");
         fwrite($log_file, $log_txt."\r\n");
         fclose($log_file);
       }

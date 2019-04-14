@@ -27,7 +27,7 @@ print(month)
 if RecentMonth_value != month:
     print(RecentMonth_value)
     cur.execute("""CREATE TABLE IF NOT EXISTS `{month}월`
-               (SELECT ID, Grade, Class, Number, Name FROM `Identify`) DEFAULT CHARACTER SET utf8
+               (SELECT ID, Grade, Class, Number, Name FROM `Identify`)
                """.format(month=time.month))
     link.commit()
     log.info("Program created table \'{month}월\' successfully. ".format(month=time.month))
@@ -45,7 +45,7 @@ if RecentMonth_value != month:
 
 
 cur.execute("""ALTER TABLE `{month}월` ADD `{day}일`
-            varchar(99) default '불출석'
+            varchar(99) default '-'
             """.format(month=time.month, day=time.day))
 link.commit()
 log.info("""Program created column \'{day}일\' on Table \'{month}월\' successfully.
@@ -61,7 +61,7 @@ link.close()
 #
 # if weekno<5:
 #     cur.execute("ALTER TABLE `{month}월` ADD `{day}일` varchar(99) default '불출석'".format(month=time.month, day=time.day))
-#     link.commit(uto
+#     link.commit()
 #     log.info("Program created column \'{day}일\' on Table \'{month}월\' successfully. ".format(month=time.month, day=time.day))
 #
 #
