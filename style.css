@@ -54,3 +54,23 @@ input {
 #red {
   color: red;
 }
+
+table {
+  width: 450px;
+  height: auto;
+  text-align: center;
+  border: 1px solid #000000;
+  border-collapse: collapse;
+  margin-left: 75px;
+  margin-top: 50px;
+}
+
+thead {
+  font-weight: bolder;
+  width: auto;
+  height: auto;
+}
+
+th, td {
+  border: 1px solid #777777;
+}

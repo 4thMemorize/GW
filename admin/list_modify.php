@@ -1,87 +1,99 @@
 <!DOCTYPE html>
 <html>
   <head>
-  <link rel="stylesheet" type="text/css" href="/Project/style.css?ver=1.1.3.5"/>
-    <meta charset="utf-8">
-    <title>List Management</title>
+    <link rel="stylesheet" type="text/css" href="/Project/style.css?ver=1.3.3.5"/>
+    <title></title>
   </head>
   <body>
-      <h1>List Management Page</h1>
-      <h2 id="red">선택한 학생을 명단에서 제외합니다.</h2>
-      <form class="" action="delete.php" method="post">
-        <select class="" name="Grade">
-          <option>학년</option>
-          <option>1</option>
-          <option>2</option>
-          <option>3</option>
-        </select>
+    <?php
+    if (isset($_POST['Query'])) {
 
-        <select class="" align="center" name="Class">
-          <option>반</option>
-          <option>1</option>
-          <option>2</option>
-          <option>3</option>
-          <option>4</option>
-          <option>5</option>
-          <option>6</option>
-          <option>7</option>
-          <option>8</option>
-          <option>9</option>
-          <option>10</option>
-          <option>11</option>
-          <option>12</option>
-          <option>13</option>
-          <option>14</option>
-          <option>15</option>
-        </select>
+      echo "<h1>List Modify Page</h1>
+      <h2>정보를 수정할 학생을 골라주세요.</h2>";
 
-        <select class="" name="Number">
-          <option>번호</option>
-          <option>1</option>
-          <option>2</option>
-          <option>3</option>
-          <option>4</option>
-          <option>5</option>
-          <option>6</option>
-          <option>7</option>
-          <option>8</option>
-          <option>9</option>
-          <option>10</option>
-          <option>11</option>
-          <option>12</option>
-          <option>13</option>
-          <option>14</option>
-          <option>15</option>
-          <option>16</option>
-          <option>17</option>
-          <option>18</option>
-          <option>19</option>
-          <option>20</option>
-          <option>21</option>
-          <option>22</option>
-          <option>23</option>
-          <option>24</option>
-          <option>25</option>
-          <option>26</option>
-          <option>27</option>
-          <option>28</option>
-          <option>29</option>
-          <option>30</option>
-          <option>31</option>
-          <option>32</option>
-          <option>33</option>
-          <option>34</option>
-          <option>35</option>
-          <option>36</option>
-          <option>37</option>
-          <option>38</option>
-          <option>39</option>
-          <option>40</option>
-        </select>
-        <input type="text" name="Name" value="" placeholder="이름"> <br>
-        <input type="text" id="pw" name="Password" value="" placeholder="교사용 인증번호">
-        <button type="submit" name="button">확인</button>
-      </form>
+      $link=mysqli_connect("localhost", "root", "4thMemorize", "GW");
+      mysqli_set_charset($link, "utf8");
+
+      $name = $_POST['Name'];
+
+      $Student_Inform = [];
+
+      $sql="SELECT * FROM Identify WHERE Name='$name'";
+      $result=mysqli_query($link, $sql) or die ("Error: " .mysqli_error($link));
+
+      $i = 0;
+      while ($row = mysqli_fetch_row($result)) {
+        $Student_Inform[$i] = array(
+          'ID' => $row[0],
+          'Serial' => $row[1],
+          'Grade' => $row[2],
+          'Class' => $row[3],
+          'Number' => $row[4],
+          'Name' => $row[5]
+        );
+          $i++;
+      }
+
+      echo "<table>
+        <thead>
+          <tr>
+            <th></th>
+            <th>학년</th>
+            <th>반</th>
+            <th>번호</th>
+            <th>이름</th>
+            <th></th>
+          </tr>
+          </thead>
+          <tbody>";
+
+      $index = array('ID', "Serial", "Grade", "Class", "Number", "Name");
+
+      for ($i=0; $i < count($Student_Inform); $i++) {
+        echo "<tr> <th>";
+        echo $i. "</th> <td>";
+        echo $Student_Inform[$i]['Grade'], "</td> <td>";
+        echo $Student_Inform[$i]['Class'], "</td> <td>";
+        echo $Student_Inform[$i]['Number'], "</td> <td>";
+        echo $Student_Inform[$i]['Name'], "</td> <td>";
+        echo "<form action=\"list_modify.php\" method=\"post\">";
+        for ($j=0; $j < count($index) ; $j++) {
+          echo "<input type=\"hidden\" name=\"". $index[$j]. "\" value=\"";
+          echo $Student_Inform[$i][$index[$j]]. "\">";
+        }
+        echo "<button type=\"submit\" name=\"button\">수정</button> </td> </form> </tr>";
+      }
+      echo "</thead>
+      <tbody>";
+    }
+    if (isset($_POST['ID'])) {
+      $ID = $_POST['ID'];
+      $Serial = $_POST['Serial'];
+      $Grade = $_POST['Grade'];
+      $Class = $_POST['Class'];
+      $Number = $_POST['Number'];
+      $Name = $_POST['Name'];
+
+      echo "<h1>List Modify Page</h1>
+      <h2>". $Grade. "학년 ". $Class. "반 ". $Number. "번 ". $Name. "학생의 정보를 수정합니다.</h2>";
+      echo "아래의 정보로 수정하기";
+      echo file_get_contents("./list_modify_input.html");
+
+      $index = array('ID', "Serial", "Grade", "Class", "Number", "Name");
+      for ($j=0; $j < count($index) ; $j++) {
+        echo "<input type=\"hidden\" name=\"". $index[$j]. "\" value=\"";
+        echo $_POST[$index[$j]]. "\">";
+      }
+      echo "  <input type=\"text\" name=\"New_Name\" value=\"\" placeholder=\"이름\"> <br>
+      <input type=\"text\" id=\"pw\" name=\"Password\" value=\"\" placeholder=\"교사용 인증번호\">
+      <button type=\"submit\" name=\"button\">확인</button>";
+    }
+
+    if(!(isset($_POST['Query']) | isset($_POST['ID']))) {
+      echo file_get_contents("./list_modify.html");
+    }
+
+     ?>
 
   </body>
 </html>
