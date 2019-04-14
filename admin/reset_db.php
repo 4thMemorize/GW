@@ -18,7 +18,7 @@
     $record = explode("/", $text);
     $array = count($record)-1;
 
-    if ($_POST['Password']=GW123) {
+    if ($_POST['Password']=='GW123') {
       $sql = "TRUNCATE Identify;";
       $result = mysqli_query($link, $sql) or die ("Error:".mysqli_error($link));
 

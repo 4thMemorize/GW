@@ -10,7 +10,7 @@
     $link=mysqli_connect("localhost", "root", "4thMemorize", "GW");
     mysqli_set_charset($link, "utf8");
 
-    if ($_POST['Password']='GW123') {
+    if ($_POST['Password']=='GW123') {
       $Serial = $_POST['Serial'];
       $Grade = $_POST['Grade'];
       $Class = $_POST['Class'];

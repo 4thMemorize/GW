@@ -48,8 +48,9 @@
           $record_result=mysqli_query($link, $record_sql) or die ("Error:".mysqli_error($link));
 
           $log_txt = $timestamp."     ". $Student_Inform['1']."학년 ". $Student_Inform['2']."반 ". $Student_Inform['3']."번 ". $Student_Inform['4']."   ". "입실 처리";
-          $comment = $Student_Inform['1']."학년".$Student_Inform['2']."반".$Student_Inform['3']."번".$Student_Inform['4'];
+          
         }
+	$comment = $Student_Inform['1']."학년".$Student_Inform['2']."반".$Student_Inform['3']."번".$Student_Inform['4'];
 
         $log_file = fopen($log_dir."/var/www/html/log/php.log", "a");
         fwrite($log_file, $log_txt."\r\n");
