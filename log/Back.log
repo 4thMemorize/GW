@@ -21,3 +21,12 @@ INFO:root:Program created column '19일' on Table '3월' successfully.
 INFO:root:Program created table '3월' successfully. 
 INFO:root:Program created column '19일' on Table '3월' successfully.
         
+INFO:root:Program created table '3월' successfully. 
+INFO:root:Program created column '21일' on Table '3월' successfully.
+        
+INFO:root:Program created table '4월' successfully. 
+INFO:root:Program created column '21일' on Table '4월' successfully.
+        
+INFO:root:Program created table '5월' successfully. 
+INFO:root:Program created column '3일' on Table '5월' successfully.
+        

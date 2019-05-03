@@ -1,67 +1,91 @@
 <!DOCTYPE html>
-<html lang="en">
-<link rel="stylesheet" type="text/css" href="style.css?ver=1.0.0.3"/>
+<html>
+<link rel="stylesheet" type="text/css" href="style.css?ver=1.1.3.4"/>
   <head>
-    <meta content="text/html" charset="utf-8">
-    <title>Register</title>
+    <meta charset="utf-8">
+    <title>Register Page</title>
+    <h1>Register Page</h1>
   </head>
   <body>
     <?php
-    $Serial = "$_GET[Serial]";
-    $Grade = "$_GET[Grade]";
-    $Class = "$_GET[Class]";
-    $Number = "$_GET[Number]";
-    $Name = "$_GET[Name]";
+    $Serial = $_GET["Serial"]
 
-    date_default_timezone_set("Asia/Seoul");
-    $month= date("n");
-    $day = date("j");
-
-    function Modify_table($Grade, $Class, $Number, $Name, $month, $day) {
-      $link=mysqli_connect("localhost", "root", "4thMemorize", "GW");
-      mysqli_set_charset($link, "utf8");
-      $sql = "INSERT INTO ". $month. "월 (Grade, Class, Number, Name, ". $day. "일) VALUES (". $Grade. ", ". $Class. ", ". $Number.", '". $Name. "', ". "'등록일')";
-      $result=mysqli_query($link, $sql) or die ("Error:".mysqli_error($link));
-
-      return $result;
-    }
-
-
-
-    $link=mysqli_connect("localhost", "root", "4thMemorize", "GW");
-    mysqli_set_charset($link, "utf8");
-
-
-    if (!($_GET['Serial']&$_GET['Grade']&$_GET['Class']&$_GET['Number']&$_GET['Name'])) {
-      $comment = "누락된 정보가 있습니다. 확인해 주세요.";
-    }
-    else {
-      $sql = "INSERT INTO Identify (Serial, Grade, Class, Number, Name) VALUES ('$Serial', $Grade, $Class, $Number, '$Name')";
-      $result = mysqli_query($link, $sql) or die ("Error:".mysqli_error($link));
-      $result_modify = Modify_table($Grade, $Class, $Number, $Name, $month, $day);
-
-      if ($result&$result_modify==1) {
-        $check_sql = "SELECT * FROM Identify order by ID DESC limit 1;";
-        $check_result = mysqli_query($link, $check_sql) or die ("Error:".mysqli_error($link));
-
-        $Inform = mysqli_fetch_array($check_result);
-        $ID = $Inform['ID'];
-        $Student_Inform =array(
-          '1' => $Inform['Grade'],
-          '2' => $Inform['Class'],
-          '3' => $Inform['Number'],
-          '4' => $Inform['Name']
-        );
-        $comment = "<h2>등록되었습니다<br>정보를 확인해 주세요</h2>";
-        $information = $Grade. "학년 ". $Class. "반 ". $Number. "번 ". $Name. "   ID = ". $ID;
-      }
-    }
      ?>
-     <div id="Student_ID">
-     <?=$comment?>
-      </div>
-     <div id="information">
-       <?=$information?>
-     </div>
+    <form class="" action="./input.php" method="post">
+      <select class="" name="Grade">
+        <option>학년</option>
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+      </select>
+
+      <select class="" align="center" name="Class">
+        <option>반</option>
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5</option>
+        <option>6</option>
+        <option>7</option>
+        <option>8</option>
+        <option>9</option>
+        <option>10</option>
+        <option>11</option>
+        <option>12</option>
+        <option>13</option>
+        <option>14</option>
+        <option>15</option>
+      </select>
+
+      <select class="" name="Number">
+        <option>번호</option>
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5</option>
+        <option>6</option>
+        <option>7</option>
+        <option>8</option>
+        <option>9</option>
+        <option>10</option>
+        <option>11</option>
+        <option>12</option>
+        <option>13</option>
+        <option>14</option>
+        <option>15</option>
+        <option>16</option>
+        <option>17</option>
+        <option>18</option>
+        <option>19</option>
+        <option>20</option>
+        <option>21</option>
+        <option>22</option>
+        <option>23</option>
+        <option>24</option>
+        <option>25</option>
+        <option>26</option>
+        <option>27</option>
+        <option>28</option>
+        <option>29</option>
+        <option>30</option>
+        <option>31</option>
+        <option>32</option>
+        <option>33</option>
+        <option>34</option>
+        <option>35</option>
+        <option>36</option>
+        <option>37</option>
+        <option>38</option>
+        <option>39</option>
+        <option>40</option>
+      </select>
+      <input type="text" name="Name" value="" placeholder="이름"> <br>
+      <button type="submit" name="button">확인</button>
+      <input type="hidden" name="Serial" value="<?=$Serial?>">
+    </form>
+
+    </form>
   </body>
 </html>
